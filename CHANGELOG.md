@@ -1,3 +1,19 @@
+## [0.0.2] - 15.11.2020
+
+* Add download method. For downloads binary data. Usage:
+
+```dart
+import 'package:image/image.dart' as DartImage;
+
+Future<Image> getAvatarImage() async {
+    final client = MSGraphClient(accessToken);
+    final avatar = await client.download("/me/photo/\$value");
+    final image = DartImage.decodeImage(avatar.toList());
+    return image;
+}
+```
+ 
+
 ## [0.0.1] - 03.11.2020
 
 * Initial release.

@@ -1,8 +1,10 @@
 library ms_graph_client;
 
+import 'dart:typed_data';
+
 import 'package:dio/dio.dart';
 
-_sendData(response) => response.data;
+T _sendData<T>(response) => response.data;
 
 class MSGraphClient {
   final String token;
@@ -16,6 +18,15 @@ class MSGraphClient {
 
   get(String path, {Map<String, dynamic> queryParameters}) {
     return _dio.get(path, queryParameters: queryParameters).then(_sendData);
+  }
+
+  Future<Uint8List> download(String path,
+      {Map<String, dynamic> queryParameters}) {
+    return _dio
+        .get<Uint8List>(path,
+            queryParameters: queryParameters,
+            options: Options(responseType: ResponseType.bytes))
+        .then(_sendData);
   }
 
   post(String path, {dynamic data, Map<String, dynamic> queryParameters}) {
