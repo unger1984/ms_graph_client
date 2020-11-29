@@ -7,7 +7,7 @@ import 'package:dio/dio.dart';
 T _sendData<T>(response) => response.data;
 
 class MSGraphClient {
-  final String token;
+  final String? token;
   Dio _dio = new Dio();
 
   MSGraphClient(this.token) {
@@ -16,12 +16,12 @@ class MSGraphClient {
     _dio.options.headers['Authorization'] = token;
   }
 
-  get(String path, {Map<String, dynamic> queryParameters}) {
+  get(String path, {Map<String, dynamic>? queryParameters}) {
     return _dio.get(path, queryParameters: queryParameters).then(_sendData);
   }
 
   Future<Uint8List> download(String path,
-      {Map<String, dynamic> queryParameters}) {
+      {Map<String, dynamic>? queryParameters}) {
     return _dio
         .get<Uint8List>(path,
             queryParameters: queryParameters,
@@ -29,19 +29,19 @@ class MSGraphClient {
         .then(_sendData);
   }
 
-  post(String path, {dynamic data, Map<String, dynamic> queryParameters}) {
+  post(String path, {dynamic data, Map<String, dynamic>? queryParameters}) {
     return _dio
         .post(path, data: data, queryParameters: queryParameters)
         .then(_sendData);
   }
 
-  put(String path, {dynamic data, Map<String, dynamic> queryParameters}) {
+  put(String path, {dynamic data, Map<String, dynamic>? queryParameters}) {
     return _dio
         .put(path, data: data, queryParameters: queryParameters)
         .then(_sendData);
   }
 
-  delete(String path, {dynamic data, Map<String, dynamic> queryParameters}) {
+  delete(String path, {dynamic data, Map<String, dynamic>? queryParameters}) {
     return _dio
         .delete(path, data: data, queryParameters: queryParameters)
         .then(_sendData);

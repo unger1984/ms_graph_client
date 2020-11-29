@@ -1,3 +1,7 @@
+## [0.0.3] - 29.11.2020
+
+* Prepare for Null-safety (wait Dio update)
+
 ## [0.0.2] - 15.11.2020
 
 * Add download method. For downloads binary data. Usage:
