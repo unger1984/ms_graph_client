@@ -8,7 +8,7 @@ T _sendData<T>(response) => response.data;
 
 class MSGraphClient {
   final String? token;
-  Dio _dio = new Dio();
+  final _dio = Dio();
 
   MSGraphClient(this.token) {
     _dio.options.baseUrl = 'https://graph.microsoft.com/v1.0/';

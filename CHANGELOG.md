@@ -1,3 +1,7 @@
+## [0.0.4] - 14.06.2021
+
+* Dart 2.13
+
 ## [0.0.3] - 29.11.2020
 
 * Prepare for Null-safety (wait Dio update)
