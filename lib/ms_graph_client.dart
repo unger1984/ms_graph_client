@@ -4,7 +4,7 @@ import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 
-T _sendData<T>(response) => response.data;
+T _sendData<T>(response) => response.data as T;
 
 class MSGraphClient {
   final String? token;
@@ -16,34 +16,39 @@ class MSGraphClient {
     _dio.options.headers['Authorization'] = token;
   }
 
-  get(String path, {Map<String, dynamic>? queryParameters}) {
-    return _dio.get(path, queryParameters: queryParameters).then(_sendData);
+  Future<R> get<R>(String path, {Map<String, dynamic>? queryParameters}) {
+    return _dio.get<R>(path, queryParameters: queryParameters).then(_sendData);
   }
 
   Future<Uint8List> download(String path,
       {Map<String, dynamic>? queryParameters}) {
     return _dio
-        .get<Uint8List>(path,
-            queryParameters: queryParameters,
-            options: Options(responseType: ResponseType.bytes))
+        .get<Uint8List>(
+          path,
+          queryParameters: queryParameters,
+          options: Options(responseType: ResponseType.bytes),
+        )
         .then(_sendData);
   }
 
-  post(String path, {dynamic data, Map<String, dynamic>? queryParameters}) {
+  Future<R> post<R>(String path,
+      {dynamic data, Map<String, dynamic>? queryParameters}) {
     return _dio
-        .post(path, data: data, queryParameters: queryParameters)
+        .post<R>(path, data: data, queryParameters: queryParameters)
         .then(_sendData);
   }
 
-  put(String path, {dynamic data, Map<String, dynamic>? queryParameters}) {
+  Future<R> put<R>(String path,
+      {dynamic data, Map<String, dynamic>? queryParameters}) {
     return _dio
-        .put(path, data: data, queryParameters: queryParameters)
+        .put<R>(path, data: data, queryParameters: queryParameters)
         .then(_sendData);
   }
 
-  delete(String path, {dynamic data, Map<String, dynamic>? queryParameters}) {
+  Future<R> delete<R>(String path,
+      {dynamic data, Map<String, dynamic>? queryParameters}) {
     return _dio
-        .delete(path, data: data, queryParameters: queryParameters)
+        .delete<R>(path, data: data, queryParameters: queryParameters)
         .then(_sendData);
   }
 }

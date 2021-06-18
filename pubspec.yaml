@@ -1,6 +1,6 @@
 name: ms_graph_client
 description: Microsoft Graph API client
-version: 0.0.4
+version: 0.0.5
 author: unger1984
 homepage: https://github.com/unger1984
 
@@ -14,8 +14,11 @@ dependencies:
   dio: ^4.0.0
 
 dev_dependencies:
+  dart_code_metrics: ^4.0.0
   flutter_test:
     sdk: flutter
+  lint: ^1.5.3
+  pedantic: ^1.11.1
 
 flutter:
 
